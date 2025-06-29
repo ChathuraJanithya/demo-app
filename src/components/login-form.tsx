@@ -94,6 +94,7 @@ export function LoginForm() {
                 onChange={handleInputChange("username")}
                 required
                 disabled={loading}
+                name="username"
               />
             </div>
 
@@ -108,6 +109,7 @@ export function LoginForm() {
                   onChange={handleInputChange("password")}
                   required
                   disabled={loading}
+                  name="password"
                 />
                 <Button
                   type="button"
