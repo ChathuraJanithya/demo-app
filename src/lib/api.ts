@@ -1,4 +1,4 @@
-import type { Borrower, BrokerInfo } from "./store";
+import { Borrower, BrokerInfo } from "@/types";
 
 // Mock API responses
 const mockBorrowers = {

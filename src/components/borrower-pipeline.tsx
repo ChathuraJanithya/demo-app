@@ -73,7 +73,6 @@ export function BorrowerPipeline() {
     const loadBorrowers = async () => {
       try {
         const data = await api.getBorrowerPipeline();
-        // @ts-expect-error - TypeScript expects a specific structure
         setBorrowers(data);
         // Set first borrower as active if none selected
         if (!activeBorrower && data.new.length > 0) {

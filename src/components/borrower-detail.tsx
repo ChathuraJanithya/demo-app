@@ -166,6 +166,7 @@ export function BorrowerDetail() {
                     api.approveLoan(activeBorrower.id)
                   )
                 }
+                className="mt-4"
               >
                 {loading === "approve" ? "Approving..." : "Approve"}
               </Button>
