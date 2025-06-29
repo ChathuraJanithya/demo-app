@@ -73,6 +73,7 @@ export function BorrowerPipeline() {
     const loadBorrowers = async () => {
       try {
         const data = await api.getBorrowerPipeline();
+        // @ts-expect-error - TypeScript expects a specific structure
         setBorrowers(data);
         // Set first borrower as active if none selected
         if (!activeBorrower && data.new.length > 0) {
@@ -85,8 +86,6 @@ export function BorrowerPipeline() {
     loadBorrowers();
   }, [setBorrowers, activeBorrower, setActiveBorrower]);
 
-  const currentBorrowers = borrowers[activeTab] || [];
-
   return (
     <Card className="h-fit">
       <CardHeader>
@@ -95,7 +94,9 @@ export function BorrowerPipeline() {
       <CardContent>
         <Tabs
           value={activeTab}
-          onValueChange={(value) => setActiveTab(value as any)}
+          onValueChange={(value) =>
+            setActiveTab(value as "new" | "in_review" | "approved")
+          }
         >
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="new">New ({borrowers.new.length})</TabsTrigger>

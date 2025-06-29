@@ -1,31 +1,38 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { ShieldX } from "lucide-react"
-import { useAppStore, type User } from "@/lib/store"
-import { authService } from "@/lib/auth"
+import type React from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { ShieldX } from "lucide-react";
+import { User } from "@/types";
+import { useAppStore } from "@/lib/store";
+import { authService } from "@/lib/auth";
 
 interface RoleGuardProps {
-  children: React.ReactNode
-  requiredRole?: User["role"]
-  adminOnly?: boolean
-  brokerOnly?: boolean
-  fallback?: React.ReactNode
+  children: React.ReactNode;
+  requiredRole?: User["role"];
+  adminOnly?: boolean;
+  brokerOnly?: boolean;
+  fallback?: React.ReactNode;
 }
 
-export function RoleGuard({ children, requiredRole, adminOnly = false, brokerOnly = false, fallback }: RoleGuardProps) {
-  const { user } = useAppStore()
+export function RoleGuard({
+  children,
+  requiredRole,
+  adminOnly = false,
+  brokerOnly = false,
+  fallback,
+}: RoleGuardProps) {
+  const { user } = useAppStore();
 
   // Check access based on props
-  let hasAccess = true
+  let hasAccess = true;
 
   if (adminOnly && !authService.isAdmin(user)) {
-    hasAccess = false
+    hasAccess = false;
   } else if (brokerOnly && !authService.isBroker(user)) {
-    hasAccess = false
+    hasAccess = false;
   } else if (requiredRole && !authService.hasRole(user, requiredRole)) {
-    hasAccess = false
+    hasAccess = false;
   }
 
   if (!hasAccess) {
@@ -34,13 +41,13 @@ export function RoleGuard({ children, requiredRole, adminOnly = false, brokerOnl
         <Alert variant="destructive" className="m-4">
           <ShieldX className="h-4 w-4" />
           <AlertDescription>
-            You don't have permission to access this feature. Required role:{" "}
-            {requiredRole || (adminOnly ? "Admin" : "Broker")}
+            You don&apos;t have permission to access this feature. Required
+            role: {requiredRole || (adminOnly ? "Admin" : "Broker")}
           </AlertDescription>
         </Alert>
       )
-    )
+    );
   }
 
-  return <>{children}</>
+  return <>{children}</>;
 }

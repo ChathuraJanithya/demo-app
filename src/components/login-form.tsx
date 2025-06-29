@@ -47,6 +47,7 @@ export function LoginForm() {
       }
     } catch (err) {
       setError("An unexpected error occurred");
+      console.error("Login error:", err);
     } finally {
       setLoading(false);
     }

@@ -16,7 +16,11 @@ interface AppState {
   isAuthenticated: boolean;
   setActiveBorrower: (borrower: Borrower) => void;
   setActiveTab: (tab: "new" | "in_review" | "approved") => void;
-  setBorrowers: (borrowers: any) => void;
+  setBorrowers: (borrowers: {
+    new: Borrower[];
+    in_review: Borrower[];
+    approved: Borrower[];
+  }) => void;
   setBrokerInfo: (info: BrokerInfo) => void;
   setWorkflowSteps: (steps: string[]) => void;
   setUser: (user: User | null) => void;

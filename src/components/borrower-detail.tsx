@@ -40,7 +40,10 @@ export function BorrowerDetail() {
     );
   }
 
-  const handleAction = async (action: string, apiCall: () => Promise<any>) => {
+  const handleAction = async (
+    action: string,
+    apiCall: () => Promise<unknown>
+  ) => {
     setLoading(action);
     try {
       const result = await apiCall();
