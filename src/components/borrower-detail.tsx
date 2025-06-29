@@ -128,7 +128,7 @@ export function BorrowerDetail() {
             </AccordionItem>
           </Accordion>
 
-          <div className="flex gap-3 mt-6">
+          <div className="flex flex-col mt-6">
             <Button
               variant="outline"
               disabled={loading === "documents"}
@@ -137,6 +137,7 @@ export function BorrowerDetail() {
                   api.requestDocuments(activeBorrower.id)
                 )
               }
+              className="mb-2"
             >
               <FileText className="h-4 w-4 mr-2" />
               {loading === "documents" ? "Requesting..." : "Request Documents"}

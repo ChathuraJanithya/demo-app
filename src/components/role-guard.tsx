@@ -38,7 +38,7 @@ export function RoleGuard({
   if (!hasAccess) {
     return (
       fallback || (
-        <Alert variant="destructive" className="m-4">
+        <Alert variant="destructive" className=" my-2">
           <ShieldX className="h-4 w-4" />
           <AlertDescription>
             You don&apos;t have permission to access this feature. Required
